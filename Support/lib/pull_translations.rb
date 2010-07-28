@@ -10,10 +10,8 @@ class PullTranslations
   def initialize
     @mygengo = MyGengo.new($mygengo_api_key, $mygengo_private_key)
     
-    puts ENV["TM_PROJECT_DIRECTORY"] + '/config/locales/**.yml'
     # Loads all locales except the default
     Dir[ENV["TM_PROJECT_DIRECTORY"] + '/config/locales/**.yml'].reject {|f| f =~ /#{$default_locale}.yml$/ }.each do |locale_file|
-      puts "Process: #{locale_file}"
       # Load locale
       locale_obj = YAML::load(File.open(locale_file).read)
       
@@ -34,7 +32,6 @@ class PullTranslations
         if value.is_a?(String)
           if value =~ /___WAITING_JOB:[0-9]+___/
             job_id = value.scan(/___WAITING_JOB:([0-9]+)___/).first.first
-            puts "Found: #{job_id}"
             res = get_job_result(job_id.to_i)
             
             obj[key] = res if res
@@ -48,18 +45,15 @@ class PullTranslations
   
   def get_job_result(job_id)
     resp = @mygengo.get_job(job_id)
-    puts resp.inspect
     if resp && resp['response'] && resp['response']['job']
       job = resp['response']['job']
 
-      puts "STATUS: #{job['status']}"
       if job['status'] == 'approved'# || job['status'] == 'reviewable'
-        puts "Finished: " + job['body_tgt'].inspect
         return job['body_tgt']
       end
     end
     
-    puts "Not Finished"
+    # puts resp.inspect
     return nil
   end
 end

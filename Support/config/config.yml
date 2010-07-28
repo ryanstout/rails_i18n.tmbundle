@@ -1,6 +1,6 @@
 --- 
 mygengo: 
-  private_key: (KO5RvZ)=pe)xr@aBO]WJqdO[^#JbY4MZulXxI(PXvdrmgCVb^EGT([E)uh@N0Cz
-  api_key: @hLQh91eAJ|fYJBqr5qQR=C#l@666SQk[ldj0XJPeZLk40iCn-yb[XK@C=Xyeltb
+  api_key: '(KO5RvZ)=pe)xr@aBO]WJqdO[^#JbY4MZulXxI(PXvdrmgCVb^EGT([E)uh@N0Cz'
+  private_key: '@hLQh91eAJ|fYJBqr5qQR=C#l@666SQk[ldj0XJPeZLk40iCn-yb[XK@C=Xyeltb'
 default_locale_file: config/locales/en.yml
 default_locale: en

@@ -92,13 +92,24 @@ class TranslateStrings
       mygengo = MyGengo.new($mygengo_api_key, $mygengo_private_key)
       
       
+      tier = case @translate_via
+      when 1
+        'standard'
+      when 2
+        'pro'
+      when 3
+        'ultra'
+      else
+        return string
+      end
+      
       # play around with different parameter values to see their effect
       job = {
           'slug' => string.gsub(/\{\{([^\}]+)\}\}/, '[[[\1]]]'),
           'body_src' => string,
           'lc_src' => from_locale,
           'lc_tgt' => to_locale,
-          'tier' => 'machine',
+          'tier' => tier,
           'auto_approve' => @auto_approve
       }
 
