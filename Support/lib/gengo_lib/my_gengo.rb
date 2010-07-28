@@ -1,8 +1,12 @@
 require 'rubygems'
+
+# Fix a bug loading active_support from textmate
+# Object.send(:remove_const, :Builder)# if defined?(Builder)
+
+require 'active_support'
 require 'httparty'
 require 'cgi'
 require 'hmac-sha1'
-require 'active_support'
 
 class MyGengo
   # BASE_URL = 'http://api.sandbox.mygengo.com/v1/'

@@ -1,9 +1,11 @@
 require ENV["TM_BUNDLE_SUPPORT"] + "/lib/text_mate"
 require 'rubygems'
 require 'yaml'
+require 'active_support'
 # require 'ya2yaml'
 require ENV["TM_BUNDLE_SUPPORT"] + "/lib/translator"
 require ENV["TM_BUNDLE_SUPPORT"] + "/lib/bundle_config"
+require ENV["TM_BUNDLE_SUPPORT"] + "/lib/gengo_lib/my_gengo"
 
 
 class TranslateStrings
@@ -12,13 +14,18 @@ class TranslateStrings
     
     @translate_to = TextMate.input('Please enter the locale you want to auto-translate to (existing strings will not be overwritten)', '')
     
+    if !@translate_to || @translate_to.strip == ''
+      return
+    end
+    
     @translate_via = TextMate.choose('Choose how you want to translate the english locale?', ['Google Translate', 'MyGengo - Standard', 'MyGengo - Pro', 'MyGengo - Ultra'])
     
     if @translate_via != 0
       # Use MyGengo
       # Ask for API_KEYS if we haven't set them up yet
-      if !$mygengo_api_key || !$mygengo_private_key || !$mygengo_api_key == '' || !$mygengo_private_key == ''
-        BundleConfig.setup_mygengo
+      if !$mygengo_api_key || !$mygengo_private_key || $mygengo_api_key.strip == '' || $mygengo_private_key.strip == ''
+        BUNDLE_CONFIG.setup_keys
+        return
       end
       
       # Confirm
@@ -103,7 +110,8 @@ class TranslateStrings
       begin
         return "___WAITING_JOB:#{resp['response']['job']['job_id']}___"
       rescue
-        TextMate.textbox("An error happened while translating, the following was returned", resp.inspect)
+        require 'cgi'
+        TextMate.textbox("An error happened while translating, the following was returned", resp.inspect.gsub(/[\'\"\$]/, ''))
         return string
       end
     end
