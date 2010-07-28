@@ -1,5 +1,5 @@
 require ENV["TM_BUNDLE_SUPPORT"] + "/lib/text_mate"
-require ENV["TM_BUNDLE_SUPPORT"] + "/lib/load_config"
+require ENV["TM_BUNDLE_SUPPORT"] + "/lib/bundle_config"
 require 'rubygems'
 require 'yaml'
 

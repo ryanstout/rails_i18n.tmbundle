@@ -3,7 +3,7 @@ require 'rubygems'
 require 'yaml'
 # require 'ya2yaml'
 require ENV["TM_BUNDLE_SUPPORT"] + "/lib/translator"
-require ENV["TM_BUNDLE_SUPPORT"] + "/lib/load_config"
+require ENV["TM_BUNDLE_SUPPORT"] + "/lib/bundle_config"
 
 
 class TranslateStrings
