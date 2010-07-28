@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'yaml'
+
 config = YAML::load(File.open(ENV["TM_BUNDLE_SUPPORT"] + "/config/config.yml").read)
 
 # Store some defaults, we're assuming english is the default locale, you can change that below
