@@ -6,7 +6,7 @@ require 'active_support'
 require 'my_gengo'
 
 
-gengo = MyGengo.new(MYGENGO_API_KEY, MYGENGO_PRIVATE_KEY)
+gengo = MyGengo.new($mygengo_api_key, $mygengo_private_key)
 
 @job_id = ARGV[0] if ARGV[0]
 if @job_id

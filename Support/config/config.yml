@@ -1,4 +1,5 @@
-default_locale: config/locales/en.yml
+default_locale_file: config/locales/en.yml
+default_locale: en
 mygengo:
   api_key: ''
   private_key: ''

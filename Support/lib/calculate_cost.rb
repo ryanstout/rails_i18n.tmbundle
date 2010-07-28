@@ -6,8 +6,7 @@ require 'yaml'
 
 class CalculateCost
   def initialize
-    # TextMate.choose('Choose how you want to translate the english locale?', ['Google Translate', 'MyGengo - Standard', 'MyGengo - Pro', 'MyGengo - Ultra'])
-    @default_locale = YAML::load(File.open(DEFAULT_LOCALE_FILE).read)['en']
+    @default_locale = YAML::load(File.open($default_locale_file).read)['en']
 
     # Loop through the current locale and count the number of words
     total_words = process(@default_locale)

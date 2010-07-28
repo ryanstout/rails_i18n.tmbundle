@@ -46,7 +46,7 @@ class AddTranslation
       controller.gsub!('.rb', '')
     end
 
-    default_locale = YAML::load(File.open(DEFAULT_LOCALE_FILE).read)
+    default_locale = YAML::load(File.open($default_locale_file).read)
 
     # Split token into sections
     token_parts = @token_key.split('.')
@@ -82,7 +82,7 @@ class AddTranslation
     end
 
     # Dump into the english locale
-    File.open(DEFAULT_LOCALE_FILE, 'w') do |f|
+    File.open($default_locale_file, 'w') do |f|
       f.write(default_locale.to_yaml)
     end
   end
