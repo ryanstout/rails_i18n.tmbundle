@@ -21,7 +21,15 @@ class AddTranslation
     add_to_locale
 
     # Print so the results are added back into textmate
-    print "<%= t('.#{@token_key}') %>"
+    variables = []
+    @selected_text.scan(/\{\{(.*?)\}\}/).flatten.each do |variable|
+      variable.gsub!(/\s/, '_')
+      variables << ":#{variable} => #{variable}"
+    end
+    
+    variable_str = (variables.size > 0) ? (', ' + variables.join(', ')) : ''
+    
+    print "<%= t('.#{@token_key}'#{variable_str}) %>"
   end
   
   # Ask the user for the token they want to use for this key

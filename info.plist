@@ -4,6 +4,13 @@
 <dict>
 	<key>name</key>
 	<string>Rails i18n</string>
+	<key>ordering</key>
+	<array>
+		<string>46A50FB1-0B6D-43BE-81AA-A1CE1B8C605B</string>
+		<string>2B12C17A-23C7-4C3C-94A9-72AB35A40704</string>
+		<string>A47E697C-4CB7-4B3B-A908-CD27EC996826</string>
+		<string>B6ECCCD3-1A5C-4FDE-91CB-C156F27A8CE2</string>
+	</array>
 	<key>uuid</key>
 	<string>EC798126-F527-4D70-A8BA-317A7E735489</string>
 </dict>

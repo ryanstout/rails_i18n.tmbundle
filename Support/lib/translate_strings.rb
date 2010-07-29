@@ -9,7 +9,7 @@ require ENV["TM_BUNDLE_SUPPORT"] + "/lib/gengo_lib/my_gengo"
 
 
 class TranslateStrings
-  def initialize    
+  def initialize
     check_requirements
     
     @translate_to = TextMate.input('Please enter the locale you want to auto-translate to (existing strings will not be overwritten)', '')
@@ -29,7 +29,7 @@ class TranslateStrings
       end
       
       # Confirm
-      if !TextMate.message_yes_no_cancel('Are you sure you want to continue translating with MyGengo, it will cost money, be sure to calculate the cost with Rails i18n -> Estimate Translation Cost')
+      if !TextMate.message_yes_no_cancel("Are you sure?  This will cost money.")
         return
       end
     end

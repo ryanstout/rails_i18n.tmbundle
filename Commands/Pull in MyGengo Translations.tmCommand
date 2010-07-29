@@ -10,6 +10,8 @@
 </string>
 	<key>input</key>
 	<string>none</string>
+	<key>keyEquivalent</key>
+	<string>@P</string>
 	<key>name</key>
 	<string>Pull in MyGengo Translations</string>
 	<key>output</key>

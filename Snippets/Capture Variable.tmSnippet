@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>&lt;% ${1:variable_name} = capture do %&gt;
+	$TM_SELECTED_TEXT
+&lt;% end %&gt;
+{{$1}}</string>
+	<key>keyEquivalent</key>
+	<string>@Y</string>
+	<key>name</key>
+	<string>Capture Variable</string>
+	<key>uuid</key>
+	<string>1AC5DC46-7FB5-489C-92E8-86398987739B</string>
+</dict>
+</plist>
