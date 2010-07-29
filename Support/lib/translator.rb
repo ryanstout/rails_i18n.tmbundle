@@ -8,6 +8,7 @@
 require "rubygems"
 gem "httparty"
 require "httparty"
+require 'cgi'
  
 class Translator
   
@@ -15,11 +16,23 @@ class Translator
                      
   base_uri "http://ajax.googleapis.com/ajax/services/language"
   
+  def self.escape(text)
+    text.gsub('"', '&quot;')
+  end
+  
+  def self.unescape(text)
+    text.gsub(/[&]quot[;]/i, '"')
+  end
+  
   def self.translate(text, from, to)
-    options = {:query => {:v => "1.0", :q => text, :langpair => "#{from}|#{to}"}}
+    options = {:query => {:v => "1.0", :q => escape(text), :langpair => "#{from}|#{to}"}}
     format :json
     response = get("/translate", options)
-    return response["responseData"]["translatedText"]                     
+    if response["responseData"]["translatedText"]
+      return unescape(response["responseData"]["translatedText"])
+    else
+      return response["responseData"]["translatedText"]
+    end
   end
   
 end
