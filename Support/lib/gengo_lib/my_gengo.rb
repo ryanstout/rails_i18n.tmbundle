@@ -9,6 +9,7 @@ require 'cgi'
 require 'hmac-sha1'
 
 class MyGengo
+  # # Change if you want to use with sandbox
   # BASE_URL = 'http://api.sandbox.mygengo.com/v1/'
   BASE_URL = 'http://api.mygengo.com/v1/'
   include HTTParty

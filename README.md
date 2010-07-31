@@ -12,9 +12,11 @@ Read more about rails i18n here: http://guides.rubyonrails.org/i18n.html
 
 ## Requirements ##
 
-This bundle requires httparty to use.
+This bundle requires httparty, ruby-hmac, and ya2yaml to use.
 
-	sudo gem install httparty
+	sudo gem install httparty ruby-hmac ya2yaml
+	
+It should work with ruby 1.8.7 or 1.9
 
 ## Install ##
 To Install:
@@ -24,7 +26,13 @@ To Install:
 	git clone git://github.com/ryanstout/rails_i18n.tmbundle.git "Rails i18n.tmbundle"
 	osascript -e 'tell app "TextMate" to reload bundles'
 
-## How to Use ##
+## Issues when showing ##
+
+The yml files dumped out of this bundle should be in UTF-8.  In the event you get issues when displaying them in rails, be sure that your default external encoding is set to utf-8.  The easiest way to do this is placing this at the top of the environment.rb file.
+
+	if RUBY_VERSION > "1.9"
+	  Encoding.default_external = Encoding::UTF_8
+	end
 
 ### Add to Locale ###
 

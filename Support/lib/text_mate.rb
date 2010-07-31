@@ -92,7 +92,7 @@ module TextMate
       end
       dialog_command = "\"#{cocoa_dialog_command}\" #{command} #{options_list.join(' ')}"
       # $logger.debug "Dialog command: #{dialog_command}"
-      `#{dialog_command}`.to_a.map { |v| v.strip }
+      `#{dialog_command}`.split(/\n/).to_a.map { |v| v.strip }
     end
 
     # Shows an information bubble with a nice gradient background

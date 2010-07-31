@@ -13,7 +13,8 @@ require 'cgi'
 class Translator
   
   include HTTParty
-                     
+  # http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=Testing&langpair=en|zh-cn
+        
   base_uri "http://ajax.googleapis.com/ajax/services/language"
   
   def self.escape(text)

@@ -1,11 +1,26 @@
+# encoding: UTF-8
+
+# puts RUBY_VERSION
+
+if RUBY_VERSION > "1.9"
+  Encoding.default_external = Encoding::UTF_8
+  # Encoding.default_internal = Encoding::UTF_8
+else
+  $KCODE = 'UTF8'
+end
+
 require ENV["TM_BUNDLE_SUPPORT"] + "/lib/text_mate"
 require 'rubygems'
 require 'yaml'
 require 'active_support'
-# require 'ya2yaml'
+require 'ya2yaml'
 require ENV["TM_BUNDLE_SUPPORT"] + "/lib/translator"
 require ENV["TM_BUNDLE_SUPPORT"] + "/lib/bundle_config"
 require ENV["TM_BUNDLE_SUPPORT"] + "/lib/gengo_lib/my_gengo"
+
+# exit
+
+
 
 
 class TranslateStrings
@@ -16,6 +31,8 @@ class TranslateStrings
     
     if !@translate_to || @translate_to.strip == ''
       return
+    else
+      @translate_to = @translate_to.downcase
     end
     
     @translate_via = TextMate.choose('Choose how you want to translate the english locale?', ['Google Translate', 'MyGengo - Standard', 'MyGengo - Pro', 'MyGengo - Ultra'])
@@ -55,7 +72,7 @@ class TranslateStrings
     process(default_locale, to_locale, @translate_to)
 
     File.open(to_file, 'w') do |f|
-      f.write({@translate_to => to_locale}.to_yaml)
+      f.write({@translate_to => to_locale}.ya2yaml)
     end
 
   end

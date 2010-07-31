@@ -23,6 +23,14 @@ class BundleConfig
   end
   
   def setup_keys
+    have_an_account = TextMate.message_yes_no_cancel('Do you have a MyGengo Account?')
+    
+    if !have_an_account
+      `open "http://mygengo.com/a/e04cf"`
+      TextMate.message('A browser window was opened for you to create an account.')
+      TextMate.message('Once you are finished setting up the account, click OK.')
+    end
+    
     @config['mygengo'] ||= {}
     @config['mygengo']['api_key'] = TextMate.input('Enter your mygengo.com API KEY', '')
     @config['mygengo']['private_key'] = TextMate.input('Enter your mygengo.com PRIVATE KEY', '')
