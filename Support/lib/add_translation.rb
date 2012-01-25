@@ -16,6 +16,8 @@ class AddTranslation
     @selected_text = ENV['TM_SELECTED_TEXT']
     @path = ENV['TM_FILEPATH']
     
+    
+    
     get_token_key
     
     add_to_locale
@@ -29,12 +31,22 @@ class AddTranslation
     
     variable_str = (variables.size > 0) ? (', ' + variables.join(', ')) : ''
     
-    print "<%= t('.#{@token_key}'#{variable_str}) %>"
+    controller, file = @path.split(/\//)[-2..-1]
+    
+    cmd = "t('.#{@token_key}'#{variable_str})"
+    
+    if file.match(/.*\.html\.haml$/)
+      print "= #{cmd}"
+    else
+      print "<%= #{cmd}  %>"
+    end
   end
   
   # Ask the user for the token they want to use for this key
-  def get_token_key
-    @token_key = TextMate.input("Text Key (by default uses controller.view.{your key})", '')
+  def get_token_key    
+    text = @selected_text.gsub(/%r[^a-z0-9\-_]+/, '_').gsub(' ', '_').downcase
+  
+    @token_key = TextMate.input("Text Key (by default uses controller.view.{your key})", text)
 
     if !@token_key
       print @selected_text
@@ -44,10 +56,10 @@ class AddTranslation
 
   def add_to_locale
     controller, file = @path.split(/\//)[-2..-1]
-
     # Remove partial _ and extensions from file url, or url
     if file
       file.gsub!('.html.erb', '')
+      file.gsub!('.html.haml', '')
       file.gsub!(/^[_]/, '')
     else
       # If controller
